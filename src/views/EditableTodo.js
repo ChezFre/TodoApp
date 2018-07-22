@@ -27,7 +27,7 @@ export class EditableTodo extends Component {
     onKeyUp = (e) => {
         if( e.key === 'Enter' ) {
             this.props.updateTodo( this.props.index, this.updateField.current.value );
-        } else if( e.key == 'Escape' ) {
+        } else if( e.key === 'Escape' ) {
             this.props.toggleEdit( this.props.index );
         }
     }

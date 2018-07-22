@@ -110,7 +110,11 @@ export class EditableTodoList extends Component {
     render() {
         return (
             <div className="App">
-                <h1>Todos</h1>
+
+                <header>
+                    <h1>Todos</h1>
+                    <input type="search" placeholder="Search…" className="search-field" />
+                </header>
 
 
                 <div className="add-form">

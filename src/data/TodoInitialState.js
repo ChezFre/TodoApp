@@ -1,6 +1,7 @@
 let todoInitialState = {
     newValue: '',
     filter: '',
+    query: '',
     todos: [
     ],
     _LOADING: false
