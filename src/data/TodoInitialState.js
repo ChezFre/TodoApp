@@ -1,21 +1,30 @@
 let todoInitialState = {
-    newValue: '',
-    filter: '',
-    query: '',
-    todos: [
-    ],
-    _LOADING: false
+  filter: '',
+  query: '',
+  todos: [
+    {
+      id: 'ffei2-j2i2o3',
+      title: 'My title',
+      completed: false,
+      toDelete: false,
+      editing: false,
+    },
+    {
+      id: 'ffei2-j2i2o3s',
+      title: 'My title 2',
+      completed: false,
+      toDelete: false,
+      editing: false,
+    },
+    {
+      id: 'ffei2-j2i2o3s',
+      title: 'My title 3',
+      completed: false,
+      toDelete: false,
+      editing: false,
+    },
+  ],
+  _LOADING: false,
 };
-
-let savedState = localStorage.getItem('todos');
-
-if( savedState !== null ) {
-    try {
-        todoInitialState = JSON.parse(savedState);
-    } catch(e) {
-        alert('Error fetching existing state, reverting to initial state');
-        localStorage.setItem('todos', JSON.stringify(todoInitialState));
-    }
-}
 
 export default todoInitialState;
