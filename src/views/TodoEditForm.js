@@ -7,6 +7,12 @@ class TodoEditForm extends React.Component {
     value: '',
   };
 
+  componentWillMount() {
+    this.setState({
+      value: this.props.title,
+    });
+  }
+
   onKeyUp = e => {
     this.setState({
       value: e.target.value,
