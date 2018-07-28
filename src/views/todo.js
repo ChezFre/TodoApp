@@ -1,42 +1,62 @@
 import React from 'react';
 import remove from '../assets/remove.svg';
+import PropTypes from 'prop-types';
 
-export default class Todo extends React.Component {
-  render() {
-    return (
+const Todo = props => (
+  <div>
+    {props.toDelete && (
+      <div className="delete-confirmation">
+        Are you sure you want to delete this todo?{' '}
+        <button
+          className="delete-confirm"
+          onMouseUp={() => props.deleteTodo(props.id)}
+        >
+          Delete
+        </button>{' '}
+        or{' '}
+        <button
+          className="cancel"
+          onMouseUp={() => props.toggleDelete(props.id)}
+        >
+          cancel
+        </button>.
+      </div>
+    )}
+    {!props.toDelete && (
       <div>
-        {this.props.completed}
         <input
           type="checkbox"
           title="Mark as completed"
-          checked={this.props.completed}
-          onChange={() =>
-            this.props.toggleCompleted &&
-            this.props.toggleCompleted(this.props.index)
-          }
+          checked={props.completed}
+          onChange={() => props.toggleCompleted(props.id)}
         />
 
         <span
           className="todo-value"
-          title={`Click to edit (index ${this.props.index})`}
+          title={`Click to edit (id  ${props.id})`}
           onClick={() =>
-            !this.props.completed &&
-            this.props.toggleEdit &&
-            this.props.toggleEdit(this.props.index)
+            !props.completed && props.toggleEdit && props.toggleEdit(props.id)
           }
         >
-          {this.props.title}
+          {props.title}
         </span>
 
         <button
           className="delete"
-          onMouseUp={() =>
-            this.props.toggleDelete && this.props.toggleDelete(this.props.index)
-          }
+          onMouseUp={() => props.toggleDelete && props.toggleDelete(props.id)}
         >
           <img alt="Remove" src={remove} />
         </button>
       </div>
-    );
-  }
-}
+    )}
+  </div>
+);
+
+Todo.propTypes = {
+  completed: PropTypes.bool.isRequired,
+  toggleCompleted: PropTypes.func,
+  toggleEdit: PropTypes.func,
+  toggleDelete: PropTypes.func,
+};
+
+export default Todo;

@@ -1,12 +1,17 @@
 import React from 'react';
 import './App.css';
 
-import EditableTodoList from './views/EditableTodoList';
-
+import TodoListHeaderContainer from './views/TodoListHeaderContainer';
+import EditableTodoListContainer from './views/EditableTodoListContainer';
+import TodosListFooterContainer from './views/TodoListFooterContainer';
+import TodoListAddContainer from './views/TodoListAddContainer';
 const App = () => {
   return (
     <div className="App">
-      <EditableTodoList />
+      <TodoListHeaderContainer />
+      <TodoListAddContainer />
+      <EditableTodoListContainer />
+      <TodosListFooterContainer />
     </div>
   );
 };

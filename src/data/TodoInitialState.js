@@ -1,4 +1,4 @@
-let todoInitialState = {
+const todoInitialState = {
   filter: '',
   query: '',
   todos: [
@@ -12,19 +12,19 @@ let todoInitialState = {
     {
       id: 'ffei2-j2i2o3s',
       title: 'My title 2',
-      completed: false,
+      completed: true,
       toDelete: false,
       editing: false,
     },
     {
-      id: 'ffei2-j2i2o3s',
+      id: 'ffei2-j2i2od3s',
       title: 'My title 3',
       completed: false,
       toDelete: false,
       editing: false,
     },
   ],
-  _LOADING: false,
+  _LOADING: true,
 };
 
 export default todoInitialState;
