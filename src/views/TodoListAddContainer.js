@@ -9,7 +9,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const TodoListAddContainer = connect(
-  () => {},
+  () => ({}),
   mapDispatchToProps,
 )(TodoListAdd);
 
