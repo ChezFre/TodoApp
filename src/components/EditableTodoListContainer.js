@@ -17,6 +17,7 @@ const mergeStateToProps = state => ({
     .filter(({ title }) =>
       title.toLowerCase().includes(state.query.toLowerCase()),
     ),
+  filter: state.filter,
 });
 
 const mergeDispatchToProps = {
@@ -33,12 +34,3 @@ const EditableTodoListContainer = connect(
 )(TodoList);
 
 export default EditableTodoListContainer;
-
-//     getTodos() {
-
-//         if( this.state.todos.length === 0 ) {
-//             return <div className="no-todos">You don't have any Todos yet.</div>
-//         } else if( this.state.todos.filter( todo => todo.completed === false ) === 0 && this.state.filter === 'FILTER_COMPLETED' ) {
-//             return <div className="no-todos">You have completed all your Todos.</div>
-//         }
-// }
