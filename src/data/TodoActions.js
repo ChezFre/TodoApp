@@ -1,4 +1,5 @@
 import TodoActionTypes from './TodoActionTypes';
+import * as service from './service';
 
 export function addTodo(text) {
   return {
@@ -56,23 +57,34 @@ export function toggleCompletedVisibility() {
   };
 }
 
-export function fetchTodos() {
-  return {
-    type: TodoActionTypes.FETCH_TODOS_START,
-  };
-}
-
-export function fetchTodosError(error) {
+function fetchTodosError(error) {
   return {
     type: TodoActionTypes.FETCH_TODOS_ERROR,
     payload: error,
   };
 }
 
-export function fetchTodosComplete(todos) {
+function fetchTodosComplete(todos) {
   return {
     type: TodoActionTypes.FETCH_TODOS_COMPLETE,
     todos,
+  };
+}
+
+function fetchTodosPending() {
+  return {
+    type: TodoActionTypes.FETCH_TODOS_PENDING,
+  };
+}
+
+export function fetchTodos() {
+  return dispatch => {
+    dispatch(fetchTodosPending());
+    service
+      .fetchTodos()
+      .then(result => result.json())
+      .then(result => dispatch(fetchTodosComplete(result.data)))
+      .catch(error => fetchTodosError(error));
   };
 }
 

@@ -24,7 +24,7 @@ const todoInitialState = {
       editing: false,
     },
   ],
-  _LOADING: true,
+  loading: false,
 };
 
 export default todoInitialState;
