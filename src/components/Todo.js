@@ -3,9 +3,9 @@ import remove from '../assets/remove.svg';
 import PropTypes from 'prop-types';
 
 const Todo = props => (
-  <li>
+  <React.Fragment>
     {props.toDelete && (
-      <div className="delete-confirmation">
+      <React.Fragment>
         Are you sure you want to delete this todo?{' '}
         <button
           className="delete-confirm"
@@ -20,7 +20,7 @@ const Todo = props => (
         >
           cancel
         </button>.
-      </div>
+      </React.Fragment>
     )}
     {!props.toDelete && (
       <React.Fragment>
@@ -49,7 +49,7 @@ const Todo = props => (
         </button>
       </React.Fragment>
     )}
-  </li>
+  </React.Fragment>
 );
 
 Todo.propTypes = {

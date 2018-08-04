@@ -19,23 +19,13 @@ const mergeStateToProps = state => ({
     ),
 });
 
-const mergeDispatchToProps = dispatch => ({
-  toggleDelete: id => {
-    dispatch(toggleDelete(id));
-  },
-  toggleCompleted: id => {
-    dispatch(toggleCompleted(id));
-  },
-  deleteTodo: id => {
-    dispatch(deleteTodo(id));
-  },
-  toggleEdit: id => {
-    dispatch(toggleEdit(id));
-  },
-  updateTodo: (id, text) => {
-    dispatch(updateTodo(id, text));
-  },
-});
+const mergeDispatchToProps = {
+  toggleDelete,
+  toggleCompleted,
+  deleteTodo,
+  toggleEdit,
+  updateTodo,
+};
 
 const EditableTodoListContainer = connect(
   mergeStateToProps,
