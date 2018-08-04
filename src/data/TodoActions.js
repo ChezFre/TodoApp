@@ -1,86 +1,96 @@
-import TodoActionTypes from "./TodoActionTypes";
-import TodoDispatcher from "./TodoDispatcher";
+import TodoActionTypes from './TodoActionTypes';
+import * as service from './service';
 
 export function addTodo(text) {
-  TodoDispatcher.dispatch({
+  return {
     type: TodoActionTypes.ADD_TODO,
-    payload: text
-  });
+    text,
+  };
 }
 
-export function toggleCompleted(index) {
-  TodoDispatcher.dispatch({
+export function toggleCompleted(id) {
+  return {
     type: TodoActionTypes.TOGGLE_COMPLETED,
-    payload: index
-  });
+    id,
+  };
 }
 
-export function setNewTodoText(text) {
-  TodoDispatcher.dispatch({
+export function setNewTodoText(text, id) {
+  return {
     type: TodoActionTypes.SET_NEW_TODO_TEXT,
-    payload: text
-  });
+    text,
+    id,
+  };
 }
 
-export function toggleDelete(index) {
-  TodoDispatcher.dispatch({
+export function toggleDelete(id) {
+  return {
     type: TodoActionTypes.TOGGLE_DELETE,
-    payload: index
-  });
+    id,
+  };
 }
 
-export function deleteTodo(index) {
-  TodoDispatcher.dispatch({
+export function deleteTodo(id) {
+  return {
     type: TodoActionTypes.DELETE_TODO,
-    payload: index
-  });
+    id,
+  };
 }
-export function toggleEdit(index) {
-  TodoDispatcher.dispatch({
+export function toggleEdit(id) {
+  return {
     type: TodoActionTypes.TOGGLE_EDIT,
-    payload: index
-  });
+    id,
+  };
 }
 
-export function updateTodo(index, text) {
-  TodoDispatcher.dispatch({
+export function updateTodo(id, text) {
+  return {
     type: TodoActionTypes.UPDATE_TODO,
-    payload: {
-      index,
-      text
-    }
-  });
+    id,
+    text,
+  };
 }
 
 export function toggleCompletedVisibility() {
-  TodoDispatcher.dispatch({
-    type: TodoActionTypes.TOGGLE_COMPLETED_VISIBILITY
-  });
+  return {
+    type: TodoActionTypes.TOGGLE_COMPLETED_VISIBILITY,
+  };
+}
+
+function fetchTodosError(error) {
+  return {
+    type: TodoActionTypes.FETCH_TODOS_ERROR,
+    payload: error,
+  };
+}
+
+function fetchTodosComplete(todos) {
+  return {
+    type: TodoActionTypes.FETCH_TODOS_COMPLETE,
+    todos,
+  };
+}
+
+function fetchTodosPending() {
+  return {
+    type: TodoActionTypes.FETCH_TODOS_PENDING,
+  };
 }
 
 export function fetchTodos() {
-  TodoDispatcher.dispatch({
-    type: TodoActionTypes.FETCH_TODOS_START
-  });
-
-  fetch("https://reqres.in/api/users?page=2")
-    .then(res => res.json())
-    .then(res => {
-      TodoDispatcher.dispatch({
-        type: TodoActionTypes.FETCH_TODOS_COMPLETE,
-        payload: res.data
-      });
-    })
-    .catch(err => {
-      TodoDispatcher.dispatch({
-        type: TodoActionTypes.FETCH_TODOS_ERROR
-      });
-    });
+  return dispatch => {
+    dispatch(fetchTodosPending());
+    service
+      .fetchTodos()
+      .then(result => result.json())
+      .then(result => dispatch(fetchTodosComplete(result.data)))
+      .catch(error => fetchTodosError(error));
+  };
 }
 
-export function filter(query) {
-  TodoDispatcher.dispatch({
-    type: TodoActionTypes.FILTER,
-    payload: query
-  });
+export function queryTodos(query) {
+  return {
+    type: TodoActionTypes.QUERY_TODOS,
+    query,
+  };
 }

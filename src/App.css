@@ -40,11 +40,14 @@ body {
   border-bottom: 1px solid #ececec;
 }
 
-.todos li > div {
-  padding: 1rem;
+.todos li:not(.editing):not(.delete-confirmation) {
   display: flex;
   align-items: center;
-  transition: .25s ease-out;
+}
+
+.todos li:not(.editing) {
+  /* transition: 0.25s ease-out; */
+  padding: 1rem;
 }
 
 .todos li.completed {
@@ -52,7 +55,7 @@ body {
 }
 
 .todos li.editing {
-  outline: 1px solid rgba(7, 123, 255, .2);
+  outline: 1px solid rgba(7, 123, 255, 0.2);
 }
 
 .todo-value {
@@ -73,7 +76,7 @@ body {
   flex-grow: 1;
 }
 
-.todos input[type=checkbox] {
+.todos input[type='checkbox'] {
   margin-right: 1rem;
 }
 
@@ -81,7 +84,6 @@ body {
   margin-bottom: 10px;
   display: flex;
   justify-content: stretch;
-
 }
 
 .add-form input {
@@ -93,7 +95,7 @@ body {
   padding: 0 10px;
 }
 
-.add-form button[type=submit] {
+.add-form button[type='submit'] {
   /* margin-left: 10px; */
   font-size: 1.4rem;
   font-weight: 500;
@@ -107,9 +109,9 @@ body {
   background-color: lightyellow;
 }
 
-.todos li > .delete-confirmation {
+.delete-confirmation {
   font-size: 1.4rem;
-  display: block;
+  /* display: block; */
 }
 
 .delete,
@@ -144,8 +146,8 @@ body {
 
 .delete {
   margin-left: auto;
-  opacity: .5;
-  transition: .25s ease-out;
+  opacity: 0.5;
+  transition: 0.25s ease-out;
   border-left: 1px solid #ececec;
   padding-left: 10px;
 }
@@ -168,17 +170,21 @@ body {
 
 .todos li > .edit-form {
   padding: 0;
-  align-items: initial;
+  display: flex;
+  align-items: center;
+  /* align-items: initial; */
 }
 
 .edit-form button {
   border: 0;
+  background-color: transparent;
 }
 
 .fetch {
   border: 1px solid #ececec;
   margin-left: 5px;
   font-size: 1.5rem;
+  padding: 5px 10px;
 }
 
 .fetch.loading:before {
@@ -193,7 +199,7 @@ body {
   display: inline-block;
   margin-right: 5px;
   transform-origin: center;
-  animation: spin .5s linear infinite;
+  animation: spin 0.5s linear infinite;
 }
 
 @keyframes spin {

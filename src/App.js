@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+
 import './App.css';
+import TodoListHeaderContainer from './components/TodoListHeaderContainer';
+import EditableTodoListContainer from './components/EditableTodoListContainer';
+import TodosListFooterContainer from './components/TodoListFooterContainer';
+import TodoListAddContainer from './components/TodoListAddContainer';
 
-import { EditableTodoList } from './views/EditableTodoList';
-
-class App extends Component {
-  state = {
-    todos: true
-  };
-
-  toggleTodos = () => {
-    this.setState({
-      todos: !this.state.todos
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.toggleTodos}>Toggle todo mount</button>
-        { this.state.todos && <EditableTodoList /> }
-      </div>
-    )
-  }  
-}
+const App = () => {
+  return (
+    <div className="App">
+      <TodoListHeaderContainer />
+      <TodoListAddContainer />
+      <EditableTodoListContainer />
+      <TodosListFooterContainer />
+    </div>
+  );
+};
 
 export default App;
