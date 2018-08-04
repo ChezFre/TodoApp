@@ -1,10 +1,11 @@
 import React from 'react';
-import './App.css';
 
-import TodoListHeaderContainer from './views/TodoListHeaderContainer';
-import EditableTodoListContainer from './views/EditableTodoListContainer';
-import TodosListFooterContainer from './views/TodoListFooterContainer';
-import TodoListAddContainer from './views/TodoListAddContainer';
+import './App.css';
+import TodoListHeaderContainer from './components/TodoListHeaderContainer';
+import EditableTodoListContainer from './components/EditableTodoListContainer';
+import TodosListFooterContainer from './components/TodoListFooterContainer';
+import TodoListAddContainer from './components/TodoListAddContainer';
+
 const App = () => {
   return (
     <div className="App">

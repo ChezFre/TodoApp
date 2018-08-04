@@ -1,8 +1,6 @@
 import uuid from 'uuid';
-import { combineReducers } from 'redux';
-
-import TodoInitialState from './TodoInitialState';
-import TodoActionTypes from './TodoActionTypes';
+import TodoInitialState from '../TodoInitialState';
+import TodoActionTypes from '../TodoActionTypes';
 
 const todos = function(state = TodoInitialState.todos, action) {
   switch (action.type) {
@@ -67,47 +65,4 @@ const todos = function(state = TodoInitialState.todos, action) {
   }
 };
 
-const filter = function(state = TodoInitialState.filter, action) {
-  switch (action.type) {
-    case TodoActionTypes.TOGGLE_COMPLETED_VISIBILITY: {
-      return state === 'FILTER_COMPLETED' ? '' : 'FILTER_COMPLETED';
-    }
-    default:
-      return state;
-  }
-};
-
-const loading = function(state = TodoInitialState._LOADING, action) {
-  switch (action.type) {
-    case TodoActionTypes.FETCH_TODOS_START: {
-      return true;
-    }
-    case TodoActionTypes.FETCH_TODOS_ERROR:
-    case TodoActionTypes.FETCH_TODOS_COMPLETE: {
-      return false;
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
-const query = function(state = TodoInitialState.query, action) {
-  switch (action.type) {
-    case TodoActionTypes.QUERY_TODOS: {
-      return action.query;
-    }
-    default: {
-      return state;
-    }
-  }
-};
-
-const reducers = combineReducers({
-  todos,
-  filter,
-  loading,
-  query,
-});
-
-export default reducers;
+export default todos;

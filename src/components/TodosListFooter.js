@@ -13,7 +13,7 @@ const TodosListFooter = props => (
       Hide completed
     </label>{' '}
     &#8212;
-    {props.loading}
+    {props.loading ? 'test' : ''}
     <button
       onClick={props.fetchTodos}
       className={['fetch', props.loading ? 'loading' : ''].join(' ')}

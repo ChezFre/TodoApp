@@ -3,7 +3,7 @@ import remove from '../assets/remove.svg';
 import PropTypes from 'prop-types';
 
 const Todo = props => (
-  <div>
+  <li>
     {props.toDelete && (
       <div className="delete-confirmation">
         Are you sure you want to delete this todo?{' '}
@@ -23,7 +23,7 @@ const Todo = props => (
       </div>
     )}
     {!props.toDelete && (
-      <div>
+      <React.Fragment>
         <input
           type="checkbox"
           title="Mark as completed"
@@ -47,9 +47,9 @@ const Todo = props => (
         >
           <img alt="Remove" src={remove} />
         </button>
-      </div>
+      </React.Fragment>
     )}
-  </div>
+  </li>
 );
 
 Todo.propTypes = {
