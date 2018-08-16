@@ -4,6 +4,21 @@ import TodoEditForm from './TodoEditForm';
 import classNames from 'classnames';
 
 export default class TodoList extends React.Component {
+  // moveTodo(dragIndex, hoverIndex) {
+  //   // const { cards } = this.state;
+  //   // const dragCard = cards[dragIndex];
+
+  //   console.log('moveCard', dragIndex, hoverIndex);
+
+  //   // this.setState(
+  //   //   update(this.state, {
+  //   //     cards: {
+  //   //       $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
+  //   //     },
+  //   //   }),
+  //   // );
+  // }
+
   render() {
     if (
       this.props.todos.length === 0 &&
@@ -14,7 +29,7 @@ export default class TodoList extends React.Component {
       return <div className="no-todos">You don't have any Todos yet.</div>;
     } else {
       const todos = this.props.todos.map(
-        ({ id, title, completed, editing, toDelete }) => (
+        ({ id, title, completed, editing, toDelete }, index) => (
           <li
             key={id}
             className={classNames({
@@ -26,6 +41,7 @@ export default class TodoList extends React.Component {
             {editing === false ? (
               <Todo
                 id={id}
+                index={index}
                 title={title}
                 toDelete={toDelete}
                 completed={completed}
@@ -33,6 +49,7 @@ export default class TodoList extends React.Component {
                 toggleDelete={this.props.toggleDelete}
                 toggleEdit={this.props.toggleEdit}
                 toggleCompleted={this.props.toggleCompleted}
+                moveTodo={this.props.moveTodo}
               />
             ) : (
               <TodoEditForm

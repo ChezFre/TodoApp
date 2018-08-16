@@ -3,6 +3,7 @@ import TodoInitialState from '../TodoInitialState';
 import TodoActionTypes from '../TodoActionTypes';
 
 const todos = function(state = TodoInitialState.todos, action) {
+  console.log(action.type);
   switch (action.type) {
     case TodoActionTypes.ADD_TODO: {
       const newTodo = {
@@ -59,6 +60,18 @@ const todos = function(state = TodoInitialState.todos, action) {
         editing: !state[index].editing,
       };
       return [...state.slice(0, index), clone, ...state.slice(index + 1)];
+    }
+    case TodoActionTypes.MOVE_TODO: {
+      const { fromIndex, toIndex } = action;
+
+      const todos = [
+        ...state.slice(0, fromIndex),
+        ...state.slice(fromIndex + 1),
+      ];
+
+      todos.splice(toIndex, 0, state[fromIndex]);
+
+      return todos;
     }
     default:
       return state;

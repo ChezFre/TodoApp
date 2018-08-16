@@ -11,6 +11,7 @@ const ActionTypes = {
   FETCH_TODOS_COMPLETE: 'FETCH_TODOS_COMPLETE',
   FETCH_TODOS_ERROR: 'FETCH_TODOS_ERROR',
   QUERY_TODOS: 'QUERY_TODOS',
+  MOVE_TODO: 'MOVE_TODO',
 };
 
 export default ActionTypes;

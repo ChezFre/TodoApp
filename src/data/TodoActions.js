@@ -94,3 +94,11 @@ export function queryTodos(query) {
     query,
   };
 }
+
+export function moveTodo(fromIndex, toIndex) {
+  return {
+    type: TodoActionTypes.MOVE_TODO,
+    fromIndex,
+    toIndex,
+  };
+}

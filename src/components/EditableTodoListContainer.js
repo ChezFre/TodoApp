@@ -7,6 +7,7 @@ import {
   deleteTodo,
   toggleEdit,
   updateTodo,
+  moveTodo,
 } from '../data/TodoActions';
 
 const mergeStateToProps = state => ({
@@ -26,6 +27,7 @@ const mergeDispatchToProps = {
   deleteTodo,
   toggleEdit,
   updateTodo,
+  moveTodo,
 };
 
 const EditableTodoListContainer = connect(

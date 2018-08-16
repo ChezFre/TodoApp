@@ -3,21 +3,21 @@ const todoInitialState = {
   query: '',
   todos: [
     {
-      id: 'ffei2-j2i2o3',
+      id: 'ffei2-item1',
       title: 'My title',
       completed: false,
       toDelete: false,
       editing: false,
     },
     {
-      id: 'ffei2-j2i2o3s',
+      id: 'ffei2-item2',
       title: 'My title 2',
       completed: true,
       toDelete: false,
       editing: false,
     },
     {
-      id: 'ffei2-j2i2od3s',
+      id: 'ffei2-item3',
       title: 'My title 3',
       completed: false,
       toDelete: false,
