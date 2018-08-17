@@ -1,3 +1,19 @@
+## Learning exercise
+
+This project is a learning exercise for me, a simple to-do application that's being over-engineered for the purposes of studying react.
+
+### Todos/done
+
+- [x] List To dos
+- [x] Filter To dos based on complete state
+- [x] Search To dos
+- [x] Fetch new To dos async
+- [x] Implement Redux
+- [x] Implement Drag and Drop
+- [ ] Implement animations (drag and drop, add in new todo, ...)
+- [ ] Implement Styled Components
+- [ ] Implement Jest testing
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
