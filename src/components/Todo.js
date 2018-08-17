@@ -49,14 +49,14 @@ const todoTarget = {
     // When dragging upwards, only move when the cursor is above 50%
 
     // Dragging downwards
-    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-      return;
-    }
+    // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+    //   return;
+    // }
 
-    // Dragging upwards
-    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-      return;
-    }
+    // // Dragging upwards
+    // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+    //   return;
+    // }
 
     // Time to actually perform the action
     if (props.listId === sourceListId) {
@@ -72,19 +72,28 @@ const todoTarget = {
 };
 
 class Todo extends React.Component {
-  // static propTypes = {
-  //   completed: PropTypes.bool.isRequired,
-  //   toggleCompleted: PropTypes.func,
-  //   toggleEdit: PropTypes.func,
-  //   toggleDelete: PropTypes.func,
-  // };
+  static propTypes = {
+    completed: PropTypes.bool.isRequired,
+    toggleCompleted: PropTypes.func,
+    toggleEdit: PropTypes.func,
+    toggleDelete: PropTypes.func,
+    moveTodo: PropTypes.func,
+    isDragging: PropTypes.bool,
+    connectDragSource: PropTypes.func.isRequired,
+    connectDropTarget: PropTypes.func.isRequired,
+  };
 
   render() {
-    const { isDragging, connectDragSource, connectDropTarget } = this.props;
+    const {
+      isDragging,
+      connectDragSource,
+      connectDropTarget,
+      connectDragPreview,
+    } = this.props;
     const opacity = isDragging ? 0.2 : 1;
 
     return (
-      <div style={{ opacity: opacity }}>
+      <React.Fragment>
         {this.props.toDelete && (
           <div>
             Are you sure you want to delete this todo?{' '}
@@ -105,16 +114,16 @@ class Todo extends React.Component {
           </div>
         )}
         {!this.props.toDelete &&
-          connectDragSource(
-            connectDropTarget(
-              <div>
+          connectDropTarget(
+            connectDragPreview(
+              <div className={isDragging ? 'dragging' : ''}>
+                {connectDragSource(<div className="dragger" />)}
                 <input
                   type="checkbox"
                   title="Mark as completed"
                   checked={this.props.completed}
                   onChange={() => this.props.toggleCompleted(this.props.id)}
                 />
-
                 <span
                   className="todo-value"
                   title={`Click to edit (id  ${this.props.id})`}
@@ -126,7 +135,6 @@ class Todo extends React.Component {
                 >
                   {this.props.title}
                 </span>
-
                 <button
                   className="delete"
                   onMouseUp={() =>
@@ -139,7 +147,7 @@ class Todo extends React.Component {
               </div>,
             ),
           )}
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -151,5 +159,6 @@ export default flow(
   DragSource('TODO', todoSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging(),
+    connectDragPreview: connect.dragPreview(),
   })),
 )(Todo);

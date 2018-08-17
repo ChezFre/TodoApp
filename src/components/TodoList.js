@@ -4,21 +4,6 @@ import TodoEditForm from './TodoEditForm';
 import classNames from 'classnames';
 
 export default class TodoList extends React.Component {
-  // moveTodo(dragIndex, hoverIndex) {
-  //   // const { cards } = this.state;
-  //   // const dragCard = cards[dragIndex];
-
-  //   console.log('moveCard', dragIndex, hoverIndex);
-
-  //   // this.setState(
-  //   //   update(this.state, {
-  //   //     cards: {
-  //   //       $splice: [[dragIndex, 1], [hoverIndex, 0, dragCard]],
-  //   //     },
-  //   //   }),
-  //   // );
-  // }
-
   render() {
     if (
       this.props.todos.length === 0 &&
