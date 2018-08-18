@@ -38,6 +38,7 @@ body {
 
 .todos li {
   border-bottom: 1px solid #ececec;
+  overflow: hidden;
 }
 
 .todos li:not(.editing) {
