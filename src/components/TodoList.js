@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './Todo';
 import TodoEditForm from './TodoEditForm';
 import classNames from 'classnames';
-import { Trail } from 'react-spring';
+import { Trail, animated } from 'react-spring';
 
 export default class TodoList extends React.Component {
   render() {
@@ -17,27 +17,25 @@ export default class TodoList extends React.Component {
       return (
         <ul className="todos">
           <Trail
-            native={false}
-            delay={100}
-            from={{ opacity: 0, height: 0, transform: 'translateX(100%)' }}
-            to={{ opacity: 1, height: 50, transform: 'translateX(0%)' }}
-            keys={this.props.todos.map(todo => todo.id)}
-            config={{ duration: 2000 }}
+            native
+            from={{ opacity: 0, height: 0, x: 100 }}
+            to={{ opacity: 1, height: 50, x: 0 }}
+            keys={this.props.todos.map(({ id }) => id)}
           >
-            {/* <Transition
-            keys={this.props.todos.map(todo => todo.id)}
-            from={{ opacity: 0, height: 0 }}
-            enter={{ opacity: 1, height: 50 }}
-            leave={{ opacity: 0, height: 0, pointerEvents: 'none' }}
-          > */}
             {this.props.todos.map(
-              (
-                { id, title, completed, editing, toDelete },
-                index,
-              ) => styles => (
-                <li
+              ({ id, title, completed, editing, toDelete }, index) => ({
+                x,
+                height,
+                opacity,
+              }) => (
+                <animated.li
+                  native
                   key={id}
-                  style={styles}
+                  style={{
+                    opacity,
+                    height,
+                    transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
+                  }}
                   className={classNames({
                     todo: true,
                     'delete-confirmation': toDelete,
@@ -65,10 +63,9 @@ export default class TodoList extends React.Component {
                       updateTodo={this.props.updateTodo}
                     />
                   )}
-                </li>
+                </animated.li>
               ),
             )}
-            {/* </Transition> */}
           </Trail>
         </ul>
       );
