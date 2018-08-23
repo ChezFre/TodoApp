@@ -78,8 +78,9 @@ function fetchTodosPending() {
 }
 
 export function fetchTodos() {
-  return dispatch => {
+  return async dispatch => {
     dispatch(fetchTodosPending());
+
     service
       .fetchTodos()
       .then(result => result.json())

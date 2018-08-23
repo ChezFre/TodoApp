@@ -10,7 +10,7 @@ import {
   moveTodo,
 } from '../data/TodoActions';
 
-const mergeStateToProps = state => ({
+const mapeStateToProps = state => ({
   todos: state.todos
     .filter(
       ({ completed }) => !(state.filter === 'FILTER_COMPLETED' && completed),
@@ -21,7 +21,7 @@ const mergeStateToProps = state => ({
   filter: state.filter,
 });
 
-const mergeDispatchToProps = {
+const mapeDispatchToProps = {
   toggleDelete,
   toggleCompleted,
   deleteTodo,
@@ -31,8 +31,8 @@ const mergeDispatchToProps = {
 };
 
 const EditableTodoListContainer = connect(
-  mergeStateToProps,
-  mergeDispatchToProps,
+  mapeStateToProps,
+  mapeDispatchToProps,
 )(TodoList);
 
 export default EditableTodoListContainer;

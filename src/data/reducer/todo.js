@@ -3,7 +3,6 @@ import TodoInitialState from '../TodoInitialState';
 import TodoActionTypes from '../TodoActionTypes';
 
 const todos = function(state = TodoInitialState.todos, action) {
-  console.log(action.type);
   switch (action.type) {
     case TodoActionTypes.ADD_TODO: {
       const newTodo = {
@@ -38,6 +37,7 @@ const todos = function(state = TodoInitialState.todos, action) {
     case TodoActionTypes.FETCH_TODOS_COMPLETE: {
       const todos = action.todos.map((person, i) => ({
         id: uuid.v4(),
+        toDelete: false,
         completed: false,
         editing: false,
         title: `${person.first_name} ${person.last_name}`,

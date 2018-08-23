@@ -30,6 +30,8 @@ body {
   margin: 0;
   padding: 0;
 
+  overflow: hidden;
+
   margin: auto;
   border: 1px solid #ececec;
 
@@ -38,6 +40,7 @@ body {
 
 .todos li {
   border-bottom: 1px solid #ececec;
+  overflow: hidden;
 }
 
 .todos li:not(.editing) {
