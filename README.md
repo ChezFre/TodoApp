@@ -10,7 +10,7 @@ This project is a learning exercise for me, a simple to-do application that's be
 - [x] Fetch new To dos async
 - [x] Implement Redux
 - [x] Implement Drag and Drop
-- [ ] Implement animations (drag and drop, add in new todo, ...)
+- [x] Implement animations (drag and drop, add in new todo, ...)
 - [ ] Implement Styled Components
 - [ ] Implement Jest testing
 
